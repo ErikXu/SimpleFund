@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{BF753E58-E9E5-49F0-8A78-1C10BB2067BD}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SimpleFund.Infrastructure</RootNamespace>
+    <AssemblyName>SimpleFund.Infrastructure</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="HtmlAgilityPack">
+      <HintPath>..\packages\HtmlAgilityPack.1.4.9\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Bson">
+      <HintPath>..\packages\MongoDB.Bson.2.0.0\lib\net45\MongoDB.Bson.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver">
+      <HintPath>..\packages\MongoDB.Driver.2.0.0\lib\net45\MongoDB.Driver.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver.Core">
+      <HintPath>..\packages\MongoDB.Driver.Core.2.0.0\lib\net45\MongoDB.Driver.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver.Legacy">
+      <HintPath>..\packages\mongocsharpdriver.2.0.0\lib\net45\MongoDB.Driver.Legacy.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Mongo\Mapping.cs" />
+    <Compile Include="Mongo\MongoBase.cs" />
+    <Compile Include="Mongo\MongoRepository.cs" />
+    <Compile Include="Mongo\MongoSetting.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\Fund\FundDividendRepository.cs" />
+    <Compile Include="Repositories\Fund\FundFeeRepository.cs" />
+    <Compile Include="Repositories\Fund\FundManagementRepository.cs" />
+    <Compile Include="Repositories\Fund\FundManagerRepository.cs" />
+    <Compile Include="Repositories\Fund\FundOperationRepository.cs" />
+    <Compile Include="Repositories\Fund\FundPerformanceRepository.cs" />
+    <Compile Include="Repositories\Fund\FundPurchaseInfoRepository.cs" />
+    <Compile Include="Repositories\Fund\FundRepository.cs" />
+    <Compile Include="Repositories\Fund\FundReturnRepository.cs" />
+    <Compile Include="Repositories\Fund\FundRiskRepository.cs" />
+    <Compile Include="Repositories\Fund\FundSplitRepository.cs" />
+    <Compile Include="Repositories\Fund\FundWorstReturnRepository.cs" />
+    <Compile Include="Utils\ParseUtil.cs" />
+    <Compile Include="Utils\WebSrcUtil.cs" />
+    <Compile Include="Utils\XpathUtil.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SimpleFund.Domain\SimpleFund.Domain.csproj">
+      <Project>{329a7d3c-c550-4753-bff9-1f72ed4ebcf4}</Project>
+      <Name>SimpleFund.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
