@@ -52,7 +52,8 @@ namespace SimpleFund.Domain.Tasks.Fund.Impl
                     Name = fund.Name
                 };
 
-                FillOperation(urlTemplate, fund.ShareClassId, operation);
+                var url = string.Format(urlTemplate, fund.ShareClassId);
+                FillOperation(url, operation);
 
                 operations.Add(operation);
 
@@ -66,9 +67,8 @@ namespace SimpleFund.Domain.Tasks.Fund.Impl
             }
         }
 
-        private void FillOperation(string urlTemplate, string shareClassId, FundOperation operation)
+        private void FillOperation(string url, FundOperation operation)
         {
-            var url = string.Format(urlTemplate, shareClassId);
             var doc = _webSrcUtil.GetToXml(url);
 
             operation.CategoryId = _xpathUtil.LocateString(doc, "//input[@class='categoryid']/@value");

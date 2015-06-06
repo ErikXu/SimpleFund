@@ -63,6 +63,7 @@
     <Compile Include="FundManager.cs" />
     <Compile Include="FundOperation.cs" />
     <Compile Include="FundPerformance.cs" />
+    <Compile Include="FundPrice.cs" />
     <Compile Include="FundPurchaseInfo.cs" />
     <Compile Include="FundReturn.cs" />
     <Compile Include="FundRisk.cs" />
@@ -74,6 +75,7 @@
     <Compile Include="Repositories\Fund\IFundManagerRepository.cs" />
     <Compile Include="Repositories\Fund\IFundOperationRepository.cs" />
     <Compile Include="Repositories\Fund\IFundPerformanceRepository.cs" />
+    <Compile Include="Repositories\Fund\IFundPriceRepository.cs" />
     <Compile Include="Repositories\Fund\IFundPurchaseInfoRepository.cs" />
     <Compile Include="Repositories\Fund\IFundRepository.cs" />
     <Compile Include="Repositories\Fund\IFundReturnRepository.cs" />
@@ -84,6 +86,7 @@
     <Compile Include="Tasks\Fund\IFundDividendTask.cs" />
     <Compile Include="Tasks\Fund\IFundManagementTask.cs" />
     <Compile Include="Tasks\Fund\IFundPerformanceTask.cs" />
+    <Compile Include="Tasks\Fund\IFundPriceTask.cs" />
     <Compile Include="Tasks\Fund\IFundReturnTask.cs" />
     <Compile Include="Tasks\Fund\IFundRiskTask.cs" />
     <Compile Include="Tasks\Fund\IFundTask.cs" />
@@ -92,6 +95,7 @@
     <Compile Include="Tasks\Fund\Impl\FundDividendTask.cs" />
     <Compile Include="Tasks\Fund\Impl\FundManagementTask.cs" />
     <Compile Include="Tasks\Fund\Impl\FundPerformanceTask.cs" />
+    <Compile Include="Tasks\Fund\Impl\FundPriceTask.cs" />
     <Compile Include="Tasks\Fund\Impl\FundReturnTask.cs" />
     <Compile Include="Tasks\Fund\Impl\FundRiskTask.cs" />
     <Compile Include="Tasks\Fund\Impl\FundTask.cs" />

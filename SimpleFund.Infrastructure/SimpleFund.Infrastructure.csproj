@@ -66,6 +66,7 @@
     <Compile Include="Repositories\Fund\FundManagerRepository.cs" />
     <Compile Include="Repositories\Fund\FundOperationRepository.cs" />
     <Compile Include="Repositories\Fund\FundPerformanceRepository.cs" />
+    <Compile Include="Repositories\Fund\FundPriceRepository.cs" />
     <Compile Include="Repositories\Fund\FundPurchaseInfoRepository.cs" />
     <Compile Include="Repositories\Fund\FundRepository.cs" />
     <Compile Include="Repositories\Fund\FundReturnRepository.cs" />

@@ -38,8 +38,11 @@ namespace SimpleFund.Downloader
             //var fundManagementTask = container.Resolve<IFundManagementTask>();
             //fundManagementTask.Download();
 
-            var fundDividendTask = container.Resolve<IFundDividendTask>();
-            fundDividendTask.Download();
+            //var fundDividendTask = container.Resolve<IFundDividendTask>();
+            //fundDividendTask.Download();
+
+            var fundPriceTask = container.Resolve<IFundPriceTask>();
+            fundPriceTask.Download();
 
             Logger.Info("结束下载数据...");
         }
