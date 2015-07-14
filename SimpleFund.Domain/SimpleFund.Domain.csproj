@@ -54,6 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusinessException.cs" />
     <Compile Include="Entity.cs" />
     <Compile Include="Fund.cs" />
     <Compile Include="FundBase.cs" />

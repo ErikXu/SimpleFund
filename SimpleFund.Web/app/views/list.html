@@ -1,0 +1,36 @@
+<section>
+    <div class="panel panel-default">
+        <div class="panel-heading">基金列表</div>
+        <table class="table table-hover table-bordered">
+            <thead>
+                <tr>
+                    <th>基金代码</th>
+                    <th>基金名称</th>
+                    <th>基金类型</th>
+                    <th>净值日期</th>
+                    <th>单位净值(元)</th>
+                    <th>净值日变动(元)</th>
+                    <th>今年以来回报(%)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr data-bind="if: list().length === 0">
+                    <td colspan="7">No records to display</td>
+                </tr>
+                <!-- ko foreach: list -->
+                <tr>
+                    <td><a data-bind="attr:{href:'#detail/' + symbol, target:'_blank'}"><span data-bind="text: symbol"></span></a></td>
+                    <td><a data-bind="attr:{href:'#detail/' + symbol, target:'_blank'}"><span data-bind="text: name"></span></a></td>
+                    <td data-bind="text: category"></td>
+                    <td data-bind="text: $parent.formatter.simpleDate(priceDate)"></td>
+                    <td data-bind="text: $parent.formatAmount(price)"></td>
+                    <td data-bind="text: $parent.formatAmount(priceChange)"></td>
+                    <td data-bind="text: $parent.formatAmount(returnYtd)"></td>
+                </tr>
+                <!-- /ko -->
+            </tbody>
+        </table>
+    </div>
+    <!-- ko compose:{view:'../shared/views/pager.html', model: list.pager, cacheViews:true} -->
+    <!-- /ko -->
+</section>

@@ -1,0 +1,370 @@
+<section data-bind="with:detail">
+    <h2>
+        <span data-bind="text:symbol + ' ' + name"></span>
+    </h2>
+    <h3>
+        净值：<span data-bind="text:(price && price.toFixed(4)) || '--'" style="margin-right: 30px;"></span>
+        净值日期：<span data-bind="text:$parent.formatter.simpleDate(priceDate) || '--'" style="margin-right: 30px;"></span>
+        净值日变动：<span data-bind="text:(priceChange && priceChange.toFixed(4)) || '--'"></span> | <span data-bind="text:(priceChangeRatio && priceChangeRatio.toFixed(2)) || '--'"></span>%
+    </h3>
+    <div class="panel panel-default">
+        <div class="panel-heading">基本信息</div>
+        <div class="panel-body">
+            <div class="form-horizontal">
+                <div class="clearfix">
+                    <label class="col-md-2">晨星分类</label>
+                    <label class="col-md-2">成立日期</label>
+                    <label class="col-md-2">开放日期</label>
+                    <label class="col-md-2">上市日期</label>
+                    <label class="col-md-2">申购状态</label>
+                    <label class="col-md-2">赎回状态</label>
+                </div>
+                <div class="clearfix">
+                    <p class="col-md-2 form-control-static" data-bind="text:category"></p>
+                    <p class="col-md-2 form-control-static" data-bind="text:$parent.formatter.simpleDate(inceptionDate) || '--'"></p>
+                    <p class="col-md-2 form-control-static" data-bind="text:$parent.formatter.simpleDate(openDate) || '--'"></p>
+                    <p class="col-md-2 form-control-static" data-bind="text:$parent.formatter.simpleDate(tradingDate) || '--'"></p>
+                    <p class="col-md-2 form-control-static" data-bind="text:subscribe || '--'"></p>
+                    <p class="col-md-2 form-control-static" data-bind="text:redeem || '--'"></p>
+                </div>
+                <div class="clearfix" style="margin-top: 20px;">
+                    <label class="col-md-2">投资风格</label>
+                    <label class="col-md-2">总净资产（亿元）</label>
+                    <label class="col-md-2">最低投资额（元）</label>
+                    <label class="col-md-2">上市交易所</label>
+                    <label class="col-md-2">前端收费</label>
+                    <label class="col-md-2">后端收费</label>
+                </div>
+                <div class="clearfix">
+                    <p class="col-md-2 form-control-static" data-bind="text:box || '--'"></p>
+                    <p class="col-md-2 form-control-static" data-bind="text:(fundTotalNetAsset && fundTotalNetAsset.toFixed(2)) || '--'"></p>
+                    <p class="col-md-2 form-control-static" data-bind="text:minimumInvestment || '--'"></p>
+                    <p class="col-md-2 form-control-static" data-bind="text:exchange || '--'"></p>
+                    <p class="col-md-2 form-control-static" data-bind="text:frontFee || '--'"></p>
+                    <p class="col-md-2 form-control-static" data-bind="text:deferFee || '--'"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">历史业绩（%）<span class="pull-right" data-bind="text:$parent.formatter.simpleDate(monthEndReturn.effectiveDate)"></span></div>
+        <!-- ko if: performances === undefined || performances === null || performances.length ===0 -->
+        <div class="panel-body">
+            暂无数据
+        </div>
+        <!-- /ko -->
+        <table class="table table-hover table-bordered">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>今年以来</th>
+                    <!-- ko foreach: performances -->
+                    <th data-bind="text:year"></th>
+                    <!-- /ko -->
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>总回报</th>
+                    <td data-bind="text:currentReturn.returnYTD"></td>
+                    <!-- ko foreach: performances -->
+                    <td data-bind="text:returnYear"></td>
+                    <!-- /ko -->
+                </tr>
+                <tr>
+                    <th>+/-基准指数</th>
+                    <td data-bind="text:currentReturn.returnToIndYTD"></td>
+                    <!-- ko foreach: performances -->
+                    <td data-bind="text:returnYearToIndex"></td>
+                    <!-- /ko -->
+                </tr>
+                <tr>
+                    <th>+/-同类平均</th>
+                    <td data-bind="text:currentReturn.returnToCatYTD"></td>
+                    <!-- ko foreach: performances -->
+                    <td data-bind="text:returnYearToCategory"></td>
+                    <!-- /ko -->
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">季度回报（%）<span class="pull-right" data-bind="text:$parent.formatter.simpleDate(monthEndReturn.effectiveDate)"></span></div>
+        <!-- ko if: performances === undefined || performances === null || performances.length ===0 -->
+        <div class="panel-body">
+            暂无数据
+        </div>
+        <!-- /ko -->
+        <table class="table table-hover table-bordered">
+            <colgroup>
+                <col class="col-md-3" />
+                <col class="col-md-2" />
+                <col class="col-md-2" />
+                <col class="col-md-2" />
+                <col class="col-md-2" />
+            </colgroup>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>一季度</th>
+                    <th>二季度</th>
+                    <th>三季度</th>
+                    <th>四季度</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- ko foreach: performances -->
+                <tr>
+                    <th data-bind="text:year + ' 总回报'"></th>
+                    <td data-bind="text:returnQ1"></td>
+                    <td data-bind="text:returnQ2"></td>
+                    <td data-bind="text:returnQ3"></td>
+                    <td data-bind="text:returnQ4"></td>
+                </tr>
+                <tr>
+                    <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+/-同类平均</th>
+                    <td data-bind="text:returnQ1ToCategory"></td>
+                    <td data-bind="text:returnQ2ToCategory"></td>
+                    <td data-bind="text:returnQ3ToCategory"></td>
+                    <td data-bind="text:returnQ4ToCategory"></td>
+                </tr>
+                <!-- /ko -->
+            </tbody>
+        </table>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">当前历史回报（%）<span class="pull-right" data-bind="text:$parent.formatter.simpleDate(currentReturn.effectiveDate)"></span></div>
+        <!-- ko if: currentReturn === undefined || currentReturn === null -->
+        <div class="panel-body">
+            暂无数据
+        </div>
+        <!-- /ko -->
+        <table class="table table-hover table-bordered">
+            <colgroup>
+                <col class="col-md-3" />
+                <col class="col-md-2" />
+                <col class="col-md-2" />
+                <col class="col-md-2" />
+                <col class="col-md-2" />
+            </colgroup>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>总回报</th>
+                    <th>+/-基准指数</th>
+                    <th>+/-同类平均</th>
+                    <th>同类排名</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>一个月回报</th>
+                    <td data-bind="text:currentReturn.return1M"></td>
+                    <td data-bind="text:currentReturn.returnToInd1M"></td>
+                    <td data-bind="text:currentReturn.returnToCat1M"></td>
+                    <td>--</td>
+                </tr>
+                <tr>
+                    <th>三个月回报</th>
+                    <td data-bind="text:currentReturn.return3M"></td>
+                    <td data-bind="text:currentReturn.returnToInd3M"></td>
+                    <td data-bind="text:currentReturn.returnToCat3M"></td>
+                    <td>--</td>
+                </tr>
+                <tr>
+                    <th>六个月回报</th>
+                    <td data-bind="text:currentReturn.return6M"></td>
+                    <td data-bind="text:currentReturn.returnToInd6M"></td>
+                    <td data-bind="text:currentReturn.returnToCat6M"></td>
+                    <td>--</td>
+                </tr>
+                <tr>
+                    <th>今年以来回报</th>
+                    <td data-bind="text:currentReturn.returnYTD"></td>
+                    <td data-bind="text:currentReturn.returnToIndYTD"></td>
+                    <td data-bind="text:currentReturn.returnToCatYTD"></td>
+                    <td>--</td>
+                </tr>
+                <tr>
+                    <th>一年回报</th>
+                    <td data-bind="text:currentReturn.return1Y"></td>
+                    <td data-bind="text:currentReturn.returnToInd1Y"></td>
+                    <td data-bind="text:currentReturn.returnToCat1Y"></td>
+                    <td>--</td>
+                </tr>
+                <tr>
+                    <th>二年回报（年化）</th>
+                    <td data-bind="text:currentReturn.return2Y"></td>
+                    <td data-bind="text:currentReturn.returnToInd2Y"></td>
+                    <td data-bind="text:currentReturn.returnToCat2Y"></td>
+                    <td>--</td>
+                </tr>
+                <tr>
+                    <th>三年回报（年化）</th>
+                    <td data-bind="text:currentReturn.return3Y"></td>
+                    <td data-bind="text:currentReturn.returnToInd3Y"></td>
+                    <td data-bind="text:currentReturn.returnToCat3Y"></td>
+                    <td>--</td>
+                </tr>
+                <tr>
+                    <th>五年回报（年化）</th>
+                    <td data-bind="text:currentReturn.return5Y"></td>
+                    <td data-bind="text:currentReturn.returnToInd5Y"></td>
+                    <td data-bind="text:currentReturn.returnToCat5Y"></td>
+                    <td>--</td>
+                </tr>
+                <tr>
+                    <th>十年回报（年化）</th>
+                    <td data-bind="text:currentReturn.return10Y"></td>
+                    <td data-bind="text:currentReturn.returnToInd10Y"></td>
+                    <td data-bind="text:currentReturn.returnToCat10Y"></td>
+                    <td>--</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">上月历史回报（%）<span class="pull-right" data-bind="text:$parent.formatter.simpleDate(monthEndReturn.effectiveDate)"></span></div>
+        <!-- ko if: monthEndReturn === undefined || monthEndReturn === null -->
+        <div class="panel-body">
+            暂无数据
+        </div>
+        <!-- /ko -->
+        <table class="table table-hover table-bordered">
+            <colgroup>
+                <col class="col-md-3" />
+                <col class="col-md-2" />
+                <col class="col-md-2" />
+                <col class="col-md-2" />
+                <col class="col-md-2" />
+            </colgroup>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>总回报</th>
+                    <th>+/-基准指数</th>
+                    <th>+/-同类平均</th>
+                    <th>同类排名</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>一个月回报</th>
+                    <td data-bind="text:monthEndReturn.return1M"></td>
+                    <td data-bind="text:monthEndReturn.returnToInd1M"></td>
+                    <td data-bind="text:monthEndReturn.returnToCat1M"></td>
+                    <td>--</td>
+                </tr>
+                <tr>
+                    <th>三个月回报</th>
+                    <td data-bind="text:monthEndReturn.return3M"></td>
+                    <td data-bind="text:monthEndReturn.returnToInd3M"></td>
+                    <td data-bind="text:monthEndReturn.returnToCat3M"></td>
+                    <td>--</td>
+                </tr>
+                <tr>
+                    <th>六个月回报</th>
+                    <td data-bind="text:monthEndReturn.return6M"></td>
+                    <td data-bind="text:monthEndReturn.returnToInd6M"></td>
+                    <td data-bind="text:monthEndReturn.returnToCat6M"></td>
+                    <td>--</td>
+                </tr>
+                <tr>
+                    <th>今年以来回报</th>
+                    <td data-bind="text:monthEndReturn.returnYTD"></td>
+                    <td data-bind="text:monthEndReturn.returnToIndYTD"></td>
+                    <td data-bind="text:monthEndReturn.returnToCatYTD"></td>
+                    <td>--</td>
+                </tr>
+                <tr>
+                    <th>一年回报</th>
+                    <td data-bind="text:monthEndReturn.return1Y"></td>
+                    <td data-bind="text:monthEndReturn.returnToInd1Y"></td>
+                    <td data-bind="text:monthEndReturn.returnToCat1Y"></td>
+                    <td>--</td>
+                </tr>
+                <tr>
+                    <th>二年回报（年化）</th>
+                    <td data-bind="text:monthEndReturn.return2Y"></td>
+                    <td data-bind="text:monthEndReturn.returnToInd2Y"></td>
+                    <td data-bind="text:monthEndReturn.returnToCat2Y"></td>
+                    <td>--</td>
+                </tr>
+                <tr>
+                    <th>三年回报（年化）</th>
+                    <td data-bind="text:monthEndReturn.return3Y"></td>
+                    <td data-bind="text:monthEndReturn.returnToInd3Y"></td>
+                    <td data-bind="text:monthEndReturn.returnToCat3Y"></td>
+                    <td>--</td>
+                </tr>
+                <tr>
+                    <th>五年回报（年化）</th>
+                    <td data-bind="text:monthEndReturn.return5Y"></td>
+                    <td data-bind="text:monthEndReturn.returnToInd5Y"></td>
+                    <td data-bind="text:monthEndReturn.returnToCat5Y"></td>
+                    <td>--</td>
+                </tr>
+                <tr>
+                    <th>十年回报（年化）</th>
+                    <td data-bind="text:monthEndReturn.return10Y"></td>
+                    <td data-bind="text:monthEndReturn.returnToInd10Y"></td>
+                    <td data-bind="text:monthEndReturn.returnToCat10Y"></td>
+                    <td>--</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">历史最差回报（%）<span class="pull-right" data-bind="text:$parent.formatter.simpleDate(currentReturn.effectiveDate)"></span></div>
+        <!-- ko if: worstReturn === undefined || worstReturn === null -->
+        <div class="panel-body">
+            暂无数据
+        </div>
+        <!-- /ko -->
+        <table class="table table-hover table-bordered">
+            <colgroup>
+                <col class="col-md-6" />
+                <col class="col-md-6" />
+            </colgroup>
+            <tbody>
+                <tr>
+                    <th>最差三个月回报</th>
+                    <td data-bind="text:worstReturn.worstReturn3M"></td>
+                </tr>
+                <tr>
+                    <th>最差六个月回报</th>
+                    <td data-bind="text:worstReturn.worstReturn6M"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">晨星评级<span class="pull-right" data-bind="text:$parent.formatter.simpleDate(risk.effectiveDate)"></span></div>
+        <!-- ko if: risk === undefined || risk === null -->
+        <div class="panel-body">
+            暂无数据
+        </div>
+        <!-- /ko -->
+        <table class="table table-hover table-bordered">
+            <colgroup>
+                <col class="col-md-4"/>
+                <col class="col-md-4"/>
+                <col class="col-md-4"/>
+            </colgroup>
+            <thead>
+                <tr>
+                    <th>三年评级</th>
+                    <th>五年评级</th>
+                    <th>十年评级</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td data-bind="text:risk.rating3Y"></td>
+                    <td data-bind="text:risk.rating5Y"></td>
+                    <td data-bind="text:risk.rating10Y"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>

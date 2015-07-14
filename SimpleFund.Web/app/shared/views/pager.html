@@ -1,0 +1,33 @@
+﻿<div class="pull-right">
+    <span class="pager-info">
+        <span data-bind="text: firstRecordNo"></span> -
+        <span data-bind="text: lastRecordNo"></span> of
+        <strong data-bind="text: totalCount"></strong> total records
+    </span>
+    <ul class="pagination no-margin">
+        <li data-bind="css: { disabled: page() == 1 }">
+            <a href="#" data-bind="click: first"><i class="fa fa-fast-backward"></i></a>
+        </li>
+        <li data-bind="css: { disabled: page() == 1 }">
+            <a href="#" data-bind="click: previous"><i class="fa fa-step-backward"></i></a>
+        </li>
+        <!-- ko foreach: pages -->
+        <li data-bind="css: { active: $data === $parent.page() }">
+            <a href="#" data-bind="text: $data, click: function () { $parent.page($data); }"></a>
+        </li>
+        <!-- /ko -->
+        <li data-bind="css: { disabled: page() == totalPages() }">
+            <a href="#" data-bind="click: next"><i class="fa fa-step-forward"></i></a>
+        </li>
+        <li data-bind="css: { disabled: page() == totalPages() }">
+            <a href="#" data-bind="click: last"><i class="fa fa-fast-forward"></i></a>
+        </li>
+    </ul>
+    <select class="form-control pager-limit" data-bind="value: limit">
+        <option value="10">10</option>
+        <option value="20">20</option>
+        <option value="30">30</option>
+        <option value="50">50</option>
+        <option value="100">100</option>
+    </select>
+</div>
